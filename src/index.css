@@ -1,0 +1,6 @@
+@import "tailwindcss"; /* switch Tailwind on */
+
+@theme { /* our own colours for the whole app */
+  --color-clay: #b4541a; /* brown-orange: gives us bg-clay and text-clay */
+  --color-cream: #fdf1e7; /* light peach: gives us bg-cream */
+}

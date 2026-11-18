@@ -1,0 +1,12 @@
+import { defineConfig } from "vite"; // a helper Vite gives us for writing its settings
+import react from "@vitejs/plugin-react"; // lets Vite understand React code
+import tailwindcss from "@tailwindcss/vite"; // lets Vite understand Tailwind
+
+export default defineConfig({ // hand our settings to Vite
+  plugins: [react(), tailwindcss()], // switch on the React and Tailwind helpers
+  test: { // settings for the tests
+    globals: true, // lets the testing library tidy up after each test by itself
+    environment: "jsdom", // pretend to be a browser while testing
+    setupFiles: "./src/setupTests.js", // run this file before the tests
+  },
+});
