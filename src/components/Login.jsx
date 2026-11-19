@@ -10,5 +10,8 @@ function Login(){
    const { signIn, signUp, error } = useAuthStore(); // take the functions and the error message from the notebook
    const navigate = useNavigate(); // allows user to navigate to a different page after signing in or signing up
 
+ function handleChange(e) { // runs when text is typed in a box
+    setForm({ ...form, [e.target.name]: e.target.value }); // copy the form, changing only the box that changed
+  }
   return <h1>Login</h1>;
 }
