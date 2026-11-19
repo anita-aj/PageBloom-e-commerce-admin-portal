@@ -26,5 +26,12 @@ async function handleSubmit(e) { // runs when the form is sent
   }
 
 
-  return <h1>Login</h1>;
+  return(
+    <div className="flex min-h-screen items-center justify-center bg-cream bg-cover bg-center"
+      style={{ backgroundImage: "url(/images/book6.png)" }}>
+        <form onSubmit={handleSubmit} className="w-80 space-y-3 rounded-xl bg-white/90 p-6">
+        <h1 className="text-2xl font-bold">{mode === "signin" ? "Welcome Back!" : "Create account"}</h1>
+      </form>
+      </div>
+  );
 }
