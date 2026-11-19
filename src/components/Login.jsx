@@ -2,8 +2,13 @@ import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import useAuthStore from "../stores/useAuthStore";
 
-const box = "w-full rounded border p-2"; 
+const box = "w-full rounded border p-2"; // a string of Tailwind classes that we can use to style the input boxes
 
 function Login(){
+   const [mode, setMode] = useState("signin"); // is the user signing in or signing up?
+   const [form, setForm] = useState({ name: "", email: "", password: "" }); // what the person has typed so far
+   const { signIn, signUp, error } = useAuthStore(); // take the functions and the error message from the notebook
+   const navigate = useNavigate(); // allows user to navigate to a different page after signing in or signing up
+
   return <h1>Login</h1>;
 }
