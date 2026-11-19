@@ -28,9 +28,22 @@ async function handleSubmit(e) { // runs when the form is sent
 
   return(
     <div className="flex min-h-screen items-center justify-center bg-cream bg-cover bg-center"
-      style={{ backgroundImage: "url(/images/book6.png)" }}>
+      style={{ backgroundImage: "url(/images/picture.png)" }}>
         <form onSubmit={handleSubmit} className="w-80 space-y-3 rounded-xl bg-white/90 p-6">
         <h1 className="text-2xl font-bold">{mode === "signin" ? "Welcome Back!" : "Create account"}</h1>
+        
+        {mode === "signup" && (
+          <input name="name" placeholder="Name" value={form.name} onChange={handleChange} className={box} />
+        )}
+        <input name="email" type="email" placeholder="Email address" value={form.email} onChange={handleChange} className={box} />
+        <input name="password" type="password" placeholder="Password" value={form.password} onChange={handleChange} className={box} />
+        {error && <p className="text-sm text-red-600">{error}</p>}
+        <button type="submit" className="w-full rounded bg-clay p-2 text-white">
+          {mode === "signin" ? "Sign in" : "Sign up"}
+        </button>
+        <button type="button" onClick={() => setMode(mode === "signin" ? "signup" : "signin")} className="text-sm text-clay">
+          {mode === "signin" ? "No account? Sign up" : "Have an account? Sign in"}
+        </button>
       </form>
       </div>
   );
