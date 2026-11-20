@@ -15,9 +15,18 @@ function Home() {
 
       return (
     <div>
+       
+        {/* welcome banner */}
       <div className="mb-6 rounded-xl bg-cream bg-cover bg-center p-8" style={{ backgroundImage: "url(/images/Home-bg1.png)" }}>
         <h1 className="text-3xl font-bold">Welcome, {user.name}!</h1>
         <p>Manage your bookshop with ease. Add books, update prices, track orders and see how your store is growing.</p>
+      </div>
+
+        {/* three statistic cards for the products, orders and revenue*/}
+      <div className="mb-6 grid gap-4 sm:grid-cols-3">
+        <StatCard label="Total products" value={products.length} />
+        <StatCard label="Total orders" value={orders.length} />
+        <StatCard label="Total revenue" value={`KES ${revenueOf(orders).toLocaleString()}`} />
       </div>
     </div>
   );
