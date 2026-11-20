@@ -28,6 +28,15 @@ function Home() {
         <StatCard label="Total orders" value={orders.length} />
         <StatCard label="Total revenue" value={`KES ${revenueOf(orders).toLocaleString()}`} />
       </div>
+
+       {/* links for the quick actions( add product, view analytics and view orders) */}
+      <h2 className="mb-2 text-xl font-bold">Quick actions</h2>
+      <div className="flex flex-wrap gap-4">
+        <Link to="/add-product" className={link}>Add new product</Link>
+        <Link to="/analytics" className={link}>View analytics</Link>
+        <Link to="/orders" className={link}>View orders</Link>
+      </div>
+
     </div>
   );
 }
