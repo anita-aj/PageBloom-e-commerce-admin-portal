@@ -13,8 +13,14 @@ function Home() {
   const { data: products } = useFetch(`${API}/products`); // load the products and call the list products
   const { data: orders } = useFetch(`${API}/orders`); // load the orders and call the list orders
 
-    return (
-   
+      return (
+    <div>
+      <div className="mb-6 rounded-xl bg-cream bg-cover bg-center p-8" style={{ backgroundImage: "url(/images/Home-bg1.png)" }}>
+        <h1 className="text-3xl font-bold">Welcome, {user.name}!</h1>
+        <p>Manage your bookshop with ease. Add books, update prices, track orders and see how your store is growing.</p>
+      </div>
+    </div>
   );
 }
+
 export default Home;
