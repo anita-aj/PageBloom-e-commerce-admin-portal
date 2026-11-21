@@ -4,7 +4,21 @@ import { API, CATEGORIES, PLACEHOLDER } from "../constants";
 
 
 function AddProduct() {
-  return <h1>Add Product</h1>;
-}
+  const navigate = useNavigate();
+  const formId = useId();
+  const fileInputRef = useRef(null);
 
-export default AddProduct;
+  const [formData, setFormData] = useState({
+    title: "",
+    author: "",
+    price: "",
+    category: "Fiction",
+    description: "",
+  });
+
+    const [image, setImage] = useState(null);
+    const [error, setError] = useState("");
+
+   
+    return <h1>Add Product</h1>;
+}
