@@ -26,14 +26,37 @@ function AddProduct() {
       [name]: value,
     }));
   };
-  const handleImagechange = (e) => {
+
+  const handleImageChange = (e) => {
     const file = e.target.files[0];
 
     if (file) {
       setImage(file);
     }
   };
+
+  const validateForm = () => {
+    if (!formData.title.trim()) {
+      setError("Book title is required");
+      return false;
+    }
+
+    if (!formData.author.trim()) {
+      setError("Author name is required");
+      return false;
+    }
+
+    if (!formData.price || Number(formData.price) <= 0) {
+      setError("Please enter a valid price");
+      return false;
+    }
+
+    setError("");
+    return true;
+  };
+
   return <h1>Add Product</h1>;
 }
+
 
 export default AddProduct;
