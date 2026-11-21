@@ -26,7 +26,13 @@ function AddProduct() {
       [name]: value,
     }));
   };
+  const handleImagechange = (e) => {
+    const file = e.target.files[0];
 
+    if (file) {
+      setImage(file);
+    }
+  };
   return <h1>Add Product</h1>;
 }
 
