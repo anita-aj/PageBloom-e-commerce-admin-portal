@@ -2,7 +2,6 @@ import { useState, useRef, useId } from "react";
 import { useNavigate } from "react-router-dom";
 import { API, CATEGORIES, PLACEHOLDER } from "../constants";
 
-
 function AddProduct() {
   const navigate = useNavigate();
   const formId = useId();
@@ -16,9 +15,19 @@ function AddProduct() {
     description: "",
   });
 
-    const [image, setImage] = useState(null);
-    const [error, setError] = useState("");
+  const [image, setImage] = useState(null);
+  const [error, setError] = useState("");
 
-   
-    return <h1>Add Product</h1>;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  return <h1>Add Product</h1>;
 }
+
+export default AddProduct;
