@@ -1,5 +1,15 @@
-import { Outlet } from "react-router-dom"; 
+import { Outlet } from "react-router-dom";
+import Sidebar from "./Sidebar";
+
 function Layout() {
-  return <Outlet />; // for now just show the page, with no sidebar
+  return (
+    <div style={{ display: "flex" }}>
+      <Sidebar />
+      <div style={{ flex: 1, padding: "20px" }}>
+        <Outlet />
+      </div>
+    </div>
+  );
 }
+
 export default Layout;
