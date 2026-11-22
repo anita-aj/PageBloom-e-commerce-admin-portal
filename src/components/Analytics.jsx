@@ -33,7 +33,7 @@ function Analytics() {
   return (
     <div className="p-6 space-y-6">
       <h1 className="text-2xl font-bold">Analytics Dashboard</h1>
-      <div className="flex gap-2">
+      <div className="space-y-4">
   {["1W", "1M", "1Y"].map((r) => (
     <button
       key={r}
@@ -47,6 +47,17 @@ function Analytics() {
       {r}
     </button>
   ))}
+  <div className="h-64">
+  <ResponsiveContainer width="100%" height="100%">
+    <LineChart data={revenue[range] || []}>
+      <XAxis dataKey="label" />
+      <YAxis />
+      <Tooltip />
+      <Line dataKey="value" stroke="#b4541a" />
+    </LineChart>
+  </ResponsiveContainer>
+</div>
+
 </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
