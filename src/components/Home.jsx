@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"; 
 import { Link } from "react-router-dom";
-import { BookOpen, ShoppingCart, Wallet, PlusCircle, BarChart3, ClipboardList } from "lucide-react"; 
+import { PlusCircle, BarChart3, ClipboardList } from "lucide-react"; 
 import useAuthStore from "../store/useAuthStore"; 
 import useFetch from "../hooks/useFetch"; 
 import StatCard from "./StatCard"; 
@@ -43,9 +43,9 @@ useEffect(() => {
 
         {/* three statistic cards for the products, orders and revenue*/}
       <div className="grid gap-4 sm:grid-cols-3">
-        <StatCard icon={BookOpen} label="Total products" value={products.length} />
-        <StatCard icon={ShoppingCart} label="Total orders" value={orders.length} />
-        <StatCard icon={Wallet} label="Total revenue" value={`Ksh ${revenueOf(orders).toLocaleString()}`} />
+        <StatCard  label="Total products" value={products.length} />
+        <StatCard  label="Total orders" value={orders.length} />
+        <StatCard  label="Total revenue" value={`Ksh ${revenueOf(orders).toLocaleString()}`} />
       </div>
 
        {/* links for the quick actions( add product, view analytics and view orders) */}
