@@ -29,7 +29,13 @@ function Analytics() {
 
 const customers = new Set(orders.map((o) => o.customerId)).size;
 
-  return <h1>Analytics</h1>;
-}
+ <StatCard label="Total Revenue" value={`$${revenueOf(orders).toLocaleString()}`}
+/>
 
+<StatCard label="Total Orders" value={orders.length} />
+
+<StatCard label="Total Customers" value={customers} />
+</div>
+</div>
+);
 export default Analytics;
