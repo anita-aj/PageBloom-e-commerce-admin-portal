@@ -8,7 +8,7 @@ function ProductCard({ product }) {
 
   const updatePrice = useProductStore((state) => state.updatePrice);
   const deleteProduct = useProductStore((state) => state.deleteProduct);
-
+  
   const handleSave = async () => {
     const newPrice = Number(price);
     if (!Number.isFinite(newPrice) || newPrice < 0) {
