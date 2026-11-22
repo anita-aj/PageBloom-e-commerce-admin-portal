@@ -11,7 +11,7 @@ error: "",
 // GET: Fetch a single product by ID
 fetchProductById: async (id) => {
   set({ loading: true, error: "" });
-
+  
   try {
     const res = await fetch(`${API}/products/${id}`);
 
