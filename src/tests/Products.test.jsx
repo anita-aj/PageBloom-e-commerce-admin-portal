@@ -42,7 +42,7 @@ const sampleProducts = [
     price: 2100,
     image: "/images/sapiens.jpg",
   },
-];   
+];
 
 describe("Products page", () => {
   beforeEach(() => {
@@ -63,13 +63,13 @@ it("displays the Product page and its books", () => {
     expect(screen.getByText("Matilda")).toBeInTheDocument();
     expect(screen.getByText("Sapiens")).toBeInTheDocument();
   });
-    
+
   it("fetches products when the page loads", () => {
     render(<Products />);
 
     expect(mockStore.fetchProducts).toHaveBeenCalled();
   });
-  
+
 it("searches books by title", async () => {
     const user = userEvent.setup();
     render(<Products />);
@@ -91,11 +91,25 @@ it("searches books by author", async () => {
       screen.getByRole("searchbox", { name: "Search books" }),
       "Roald Dahl"
     );
-  
+
     expect(screen.getByText("Matilda")).toBeInTheDocument();
     expect(screen.queryByText("1984")).not.toBeInTheDocument();
   });
-    
+
+  it("searches books by title regardless of letter case", async () => {
+    const user = userEvent.setup();
+    render(<Products />);
+
+    await user.type(
+      screen.getByRole("searchbox", { name: "Search books" }),
+      "sapiens"
+    );
+
+    expect(screen.getByText("Sapiens")).toBeInTheDocument();
+    expect(screen.queryByText("1984")).not.toBeInTheDocument();
+    expect(screen.queryByText("Matilda")).not.toBeInTheDocument();
+  });
+
 it("filters books by category", async () => {
     const user = userEvent.setup();
     render(<Products />);
@@ -104,12 +118,12 @@ it("filters books by category", async () => {
       screen.getByRole("combobox", { name: "Filter by category" }),
       "Children"
     );
-  
+
     expect(screen.getByText("Matilda")).toBeInTheDocument();
     expect(screen.queryByText("1984")).not.toBeInTheDocument();
     expect(screen.queryByText("Sapiens")).not.toBeInTheDocument();
   });
-    
+
 it("filters books by minimum price", async () => {
     const user = userEvent.setup();
     render(<Products />);
@@ -125,12 +139,12 @@ it("filters books by minimum price", async () => {
       screen.getByRole("spinbutton", { name: "Maximum price" }),
       "1500"
     );
-    
+
     expect(screen.getByText("1984")).toBeInTheDocument();
     expect(screen.queryByText("Matilda")).not.toBeInTheDocument();
     expect(screen.queryByText("Sapiens")).not.toBeInTheDocument();
-  }); 
-    
+  });
+
   it("shows a message when no books match the search", async () => {
     const user = userEvent.setup();
     render(<Products />);
@@ -152,7 +166,7 @@ it("shows a loadaing message while products are loading", () => {
 
     expect(screen.getByText("Loading books...")).toBeInTheDocument();
   });
-  
+
 it("shows an error message when products fail to load", () => {
   mockStore.loading = false;
   mockStore.error = "Failed to fetch products";
