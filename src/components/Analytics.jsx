@@ -22,20 +22,37 @@ function Analytics() {
   const { data: orders } = useFetch(`${API}/orders`);
   const { data: products } = useFetch(`${API}/products`);
   const { data: topBooks } = useFetch(`${API}/topBooks`);
+
   const byCategory = CATEGORIES.map((c) => ({
-  category: c,
-  count: products.filter((p) => p.category === c).length,
-}));
+    category: c,
+    count: products.filter((p) => p.category === c).length,
+  }));
 
-const customers = new Set(orders.map((o) => o.customerId)).size;
+  const customers = new Set(orders.map((o) => o.customerId)).size;
 
- <StatCard label="Total Revenue" value={`$${revenueOf(orders).toLocaleString()}`}
-/>
+  return (
+    <div className="p-6 space-y-6">
+      <h1 className="text-2xl font-bold">Analytics Dashboard</h1>
 
-<StatCard label="Total Orders" value={orders.length} />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <StatCard
+          label="Total Revenue"
+          value={`Ksh ${revenueOf(orders).toLocaleString()}`}
+        />
 
-<StatCard label="Total Customers" value={customers} />
-</div>
-</div>
-);
+        <StatCard
+          label="Total Orders"
+          value={orders.length}
+        />
+
+        <StatCard
+          label="Total Customers"
+          value={customers}
+        />
+      </div>
+    </div>
+  );
+}
+
+
 export default Analytics;
