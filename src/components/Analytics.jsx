@@ -74,6 +74,15 @@ function Analytics() {
         </div>
       </div>
 
+       <div>
+        <h2 className="font-bold">Top selling books</h2>
+        {topBooks.map((b) => (
+          <p key={b.id}>
+            {b.title}: {b.sold} sold
+          </p>
+        ))}
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <StatCard
           label="Total Revenue"
