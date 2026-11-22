@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { it, expect, vi } from "vitest";
 import Analytics from "../components/Analytics";
 
@@ -35,3 +36,17 @@ it("shows the top selling books", async () => {
     await screen.findByText("1984: 142 sold")
   ).toBeInTheDocument();
 });
+
+it("range buttons switch", async () => {
+  global.fetch = vi.fn().mockResolvedValue({
+    json: () => Promise.resolve([]),
+  });
+
+  render(<Analytics />);
+
+  await userEvent.click(screen.getByText("1W"));
+
+  expect(screen.getByText("1W")).toHaveClass("bg-clay");
+});
+
+
