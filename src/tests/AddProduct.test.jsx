@@ -7,7 +7,7 @@ describe("AddProduct", () => {
   beforeEach(() => {
     vi.stubGlobal("fetch", vi.fn());
   });
-
+  
   afterEach(() => {
     vi.unstubAllGlobals();
   });
