@@ -36,7 +36,7 @@ return (
         alt={product.title}
         className="mb-4 h-48 w-full rounded-lg object-cover"
       />
-
+      
         <h2 className="text-lg font-bold">{product.title}</h2>
         <p className="text-sm text-gray-600">{product.author}</p>
         <p className="mt-2 text-sm">{product.category}</p>
