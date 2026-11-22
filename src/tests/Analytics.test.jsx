@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { it, expect, vi } from "vitest";
 import Analytics from "../components/Analytics";
@@ -14,9 +14,6 @@ it("shows the revenue card", async () => {
     await screen.findByText("Total Revenue")
   ).toBeInTheDocument();
 });
-
-
-
 
 it("shows the top selling books", async () => {
   global.fetch = vi.fn((url) =>
@@ -49,8 +46,6 @@ it("range buttons switch", async () => {
   expect(screen.getByText("1W")).toHaveClass("bg-clay");
 });
 
-
-
 it("shows the total number of unique customers", async () => {
   global.fetch = vi.fn((url) =>
     Promise.resolve({
@@ -72,4 +67,32 @@ it("shows the total number of unique customers", async () => {
   const customerLabel = await screen.findByText("Total Customers");
 
   expect(customerLabel.previousSibling.textContent).toBe("2");
+});
+
+it("loads products for the category chart", async () => {
+  global.fetch = vi.fn((url) =>
+    Promise.resolve({
+      json: () =>
+        Promise.resolve(
+          url.includes("/products")
+            ? [
+                { id: 1, title: "Book One", category: "Fiction" },
+                { id: 2, title: "Book Two", category: "Children" },
+              ]
+            : []
+        ),
+    })
+  );
+
+  render(<Analytics />);
+
+  expect(
+    screen.getByText("Books per category")
+  ).toBeInTheDocument();
+
+  await waitFor(() => {
+    expect(global.fetch).toHaveBeenCalledWith(
+      expect.stringContaining("/products")
+    );
+  });
 });
