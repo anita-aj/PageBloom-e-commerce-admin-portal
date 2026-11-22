@@ -6,7 +6,7 @@ import Home from "../components/Home";
 
 it("welcomes the logged-in user", async () => {
   useAuthStore.setState({ user: { name: "Anita" } }); // pretend Anita is logged in
-  global.fetch = vi.fn().mockResolvedValue({ json: () => Promise.resolve([]) }); // fake server: empty lists
+  globalThis.fetch = vi.fn().mockResolvedValue({ json: () => Promise.resolve([]) }); // fake server: empty lists
   render(<MemoryRouter><Home /></MemoryRouter>); // draw the page
   expect(await screen.findByText("Welcome, Anita!")).toBeInTheDocument(); // the greeting should appear
 });
