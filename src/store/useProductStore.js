@@ -8,7 +8,6 @@ products: [],
 loading: false,
 error: "",
 
-
 // GET: Fetch a single product by ID
 fetchProductById: async (id) => {
   set({ loading: true, error: "" });
