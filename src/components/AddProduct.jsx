@@ -54,6 +54,35 @@ function AddProduct() {
     setError("");
     return true;
   };
+ const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) return;
+
+    const newProduct = {
+      ...formData,
+      price: Number(formData.price),
+      image: image ? URL.createObjectURL(image) : PLACEHOLDER,
+    };
+
+    try {
+      const response = await fetch(`${API}/products`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newProduct),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to add product");
+      }
+
+      navigate("/products");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
   return <h1>Add Product</h1>;
 }
