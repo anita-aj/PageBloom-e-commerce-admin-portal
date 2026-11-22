@@ -6,7 +6,7 @@ function useProductFilters(products) {
   const [search, setSearch] = useState("");
      // Selected category
   const [category, setCategory] = useState("All");
- 
+     
      // Minimum and maximum prices
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(3000);
