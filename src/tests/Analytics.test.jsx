@@ -16,3 +16,22 @@ it("shows the revenue card", async () => {
 
 
 
+
+it("shows the top selling books", async () => {
+  global.fetch = vi.fn((url) =>
+    Promise.resolve({
+      json: () =>
+        Promise.resolve(
+          url.includes("topBooks")
+            ? [{ id: 1, title: "1984", sold: 142 }]
+            : []
+        ),
+    })
+  );
+
+  render(<Analytics />);
+
+  expect(
+    await screen.findByText("1984: 142 sold")
+  ).toBeInTheDocument();
+});
