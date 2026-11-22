@@ -50,3 +50,26 @@ it("range buttons switch", async () => {
 });
 
 
+
+it("shows the total number of unique customers", async () => {
+  global.fetch = vi.fn((url) =>
+    Promise.resolve({
+      json: () =>
+        Promise.resolve(
+          url.includes("/orders")
+            ? [
+                { id: 1, customerId: 101 },
+                { id: 2, customerId: 101 },
+                { id: 3, customerId: 102 },
+              ]
+            : []
+        ),
+    })
+  );
+
+  render(<Analytics />);
+
+  const customerLabel = await screen.findByText("Total Customers");
+
+  expect(customerLabel.previousSibling.textContent).toBe("2");
+});
