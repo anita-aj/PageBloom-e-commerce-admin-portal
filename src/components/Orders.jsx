@@ -8,26 +8,26 @@ function Orders() {
 
   return (
     <div>
-      <h2>Orders</h2>
+      <h2 className="text-2xl font-bold mb-4">Orders</h2>
       
-      <table border="1" cellPadding="10" style={{ width: "100%", background: "white" }}>
-        <thead>
+      <table className="w-full mt-8 text-left border-collapse">
+        <thead >
           <tr>
-            <th>ID</th>
-            <th>Customer</th>
-            <th>Total</th>
-            <th>Status</th>
-            <th>Date</th>
+            <th className="px-4 py-3">ID</th>
+            <th className="px-4 py-3">Customer</th>
+            <th className="px-4 py-3">Total</th>
+            <th className="px-4 py-3">Status</th>
+            <th className="px-4 py-3">Date</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody >
           {orders.map((order) => (
             <tr key={order.id}>
-              <td>{order.id}</td>
-              <td>{order.customer}</td>
-              <td>${order.total}</td>
-              <td>{order.status}</td>
-              <td>{order.date}</td>
+              <td className="px-4 py-3">{order.id}</td>
+              <td className="px-4 py-3">{order.customer}</td>
+              <td className="px-4 py-3">${order.total}</td>
+              <td className="px-4 py-3">{order.status}</td>
+              <td className="px-4 py-3">{order.date}</td>
             </tr>
           ))}
         </tbody>

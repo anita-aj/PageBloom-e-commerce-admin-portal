@@ -1,6 +1,17 @@
 {
   "users": [
-    { "id": 1, "name": "Admin", "email": "admin@pagebloom.com", "password": "admin123" }
+    {
+      "id": 1,
+      "name": "Admin",
+      "email": "admin@pagebloom.com",
+      "password": "admin123"
+    },
+    {
+      "name": "Daniel Ndiso",
+      "email": "daniel.ndiso@student.moringaschool.com",
+      "password": "1234567",
+      "id": 2
+    }
   ],
   "products": [
     { "id": 1, "title": "1984", "author": "George Orwell", "category": "Fiction", "price": 1200, "description": "A dystopian classic.", "image": "/images/1984.jpg" },
@@ -13,29 +24,152 @@
     { "id": 8, "title": "Maths Grade 6", "author": "Oxford", "category": "Education", "price": 750, "description": "Primary school textbook.", "image": "/images/maths-grade-6.jpg" }
   ],
   "orders": [
-    { "id": 1001, "customer": "Jane Doe", "items": ["1984", "Moby-Dick"], "total": 2700, "status": "Completed", "date": "2026-11-10" },
-    { "id": 1002, "customer": "John Smith", "items": ["Matilda"], "total": 900, "status": "Pending", "date": "2026-11-12" },
-    { "id": 1003, "customer": "Mary Wanjiku", "items": ["Sapiens", "Educated", "1984"], "total": 5100, "status": "Completed", "date": "2026-11-13" },
-    { "id": 1004, "customer": "David Kimani", "items": ["Physics Form 3"], "total": 800, "status": "Cancelled", "date": "2026-11-15" },
-    { "id": 1005, "customer": "Grace Achieng", "items": ["The Gruffalo", "Matilda"], "total": 1600, "status": "Completed", "date": "2026-11-16" }
+    {
+      "id": 1001,
+      "customer": "Jane Doe",
+      "items": [
+        "1984",
+        "Moby-Dick"
+      ],
+      "total": 2700,
+      "status": "Completed",
+      "date": "2026-11-10"
+    },
+    {
+      "id": 1002,
+      "customer": "John Smith",
+      "items": [
+        "Matilda"
+      ],
+      "total": 900,
+      "status": "Pending",
+      "date": "2026-11-12"
+    },
+    {
+      "id": 1003,
+      "customer": "Mary Wanjiku",
+      "items": [
+        "Sapiens",
+        "Educated",
+        "1984"
+      ],
+      "total": 5100,
+      "status": "Completed",
+      "date": "2026-11-13"
+    },
+    {
+      "id": 1004,
+      "customer": "David Kimani",
+      "items": [
+        "Physics Form 3"
+      ],
+      "total": 800,
+      "status": "Cancelled",
+      "date": "2026-11-15"
+    },
+    {
+      "id": 1005,
+      "customer": "Grace Achieng",
+      "items": [
+        "The Gruffalo",
+        "Matilda"
+      ],
+      "total": 1600,
+      "status": "Completed",
+      "date": "2026-11-16"
+    }
   ],
   "revenue": {
     "1W": [
-      { "label": "Mon", "value": 120000 }, { "label": "Tue", "value": 180000 }, { "label": "Wed", "value": 150000 },
-      { "label": "Thu", "value": 220000 }, { "label": "Fri", "value": 190000 }, { "label": "Sat", "value": 260000 }, { "label": "Sun", "value": 210000 }
+      {
+        "label": "Mon",
+        "value": 120000
+      },
+      {
+        "label": "Tue",
+        "value": 180000
+      },
+      {
+        "label": "Wed",
+        "value": 150000
+      },
+      {
+        "label": "Thu",
+        "value": 220000
+      },
+      {
+        "label": "Fri",
+        "value": 190000
+      },
+      {
+        "label": "Sat",
+        "value": 260000
+      },
+      {
+        "label": "Sun",
+        "value": 210000
+      }
     ],
     "1M": [
-      { "label": "Week 1", "value": 640000 }, { "label": "Week 2", "value": 720000 },
-      { "label": "Week 3", "value": 810000 }, { "label": "Week 4", "value": 930000 }
+      {
+        "label": "Week 1",
+        "value": 640000
+      },
+      {
+        "label": "Week 2",
+        "value": 720000
+      },
+      {
+        "label": "Week 3",
+        "value": 810000
+      },
+      {
+        "label": "Week 4",
+        "value": 930000
+      }
     ],
     "1Y": [
-      { "label": "Jan", "value": 700000 }, { "label": "Mar", "value": 820000 }, { "label": "May", "value": 900000 },
-      { "label": "Jul", "value": 1100000 }, { "label": "Sep", "value": 1000000 }, { "label": "Nov", "value": 1245000 }
+      {
+        "label": "Jan",
+        "value": 700000
+      },
+      {
+        "label": "Mar",
+        "value": 820000
+      },
+      {
+        "label": "May",
+        "value": 900000
+      },
+      {
+        "label": "Jul",
+        "value": 1100000
+      },
+      {
+        "label": "Sep",
+        "value": 1000000
+      },
+      {
+        "label": "Nov",
+        "value": 1245000
+      }
     ]
   },
   "topBooks": [
-    { "id": 1, "title": "1984", "sold": 142 },
-    { "id": 2, "title": "Matilda", "sold": 98 },
-    { "id": 3, "title": "Sapiens", "sold": 76 }
+    {
+      "id": 1,
+      "title": "1984",
+      "sold": 142
+    },
+    {
+      "id": 2,
+      "title": "Matilda",
+      "sold": 98
+    },
+    {
+      "id": 3,
+      "title": "Sapiens",
+      "sold": 76
+    }
   ]
 }
