@@ -1,101 +1,54 @@
 import { create } from "zustand";
-import { API } from "../constants.js";
+import { getCollection, saveCollection } from "../data/localDb";
 
-const headers ={"Content-Type": "application/json"};
 const useProductStore = create((set) => ({
-// Initial state
-products: [],
-loading: false,
-error: "",
-  
-// GET: Fetch a single product by ID
-fetchProductById: async (id) => {
-  set({ loading: true, error: "" });
-  
-  try {
-    const res = await fetch(`${API}/products/${id}`);
+  products: [],
+  loading: false,
+  error: "",
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch product");
+  fetchProductById: async (id) => {
+    set({ loading: true, error: "" });
+    const products = getCollection("products");
+    const product = products.find((p) => String(p.id) === String(id));
+    if (!product) {
+      set({ error: "Failed to fetch product", loading: false });
+      return;
     }
-
-    const product = await res.json();   
-
     set({ products: [product], loading: false });
-  } catch (error) {
-    set({ error: error.message, loading: false });
-  }
-},
+  },
 
-  //GET: Fetch all products
   fetchProducts: async () => {
     set({ loading: true, error: "" });
+    const products = getCollection("products");
+    set({ products, loading: false });
+  },
 
-    try {
-      const res = await fetch(`${API}/products`);
-
-      if (!res.ok) {
-        throw new Error("Failed to fetch products");
-      }
-      
-      const products = await res.json();
-
-      set({ products, loading: false });
-    } catch (error) {
-      set({ error: error.message, loading: false });
-    }
-},
-
-//PATCH: Update a product's details
-// PATCH: Update a product's price
-updatePrice: async (id, price) => {
-  try {
-    const res = await fetch(`${API}/products/${id}`, { 
-        method: "PATCH",
-        headers,
-        body: JSON.stringify({ price }),
-    });
-    if (!res.ok) {
-      throw new Error("Failed to update product price");
-    }
-
-    const updatedProduct = await res.json();
-
-    set((state) => ({
-        products: state.products.map((product) => 
-            product.id === id ? updatedProduct : product
-        ),
-    }));
+  addProduct: async (newProduct) => {
+    const products = getCollection("products");
+    const productWithId = { ...newProduct, id: Date.now() };
+    const updated = [...products, productWithId];
+    saveCollection("products", updated);
+    set({ products: updated, error: "" });
     return true;
-  } catch (error) {
-    set({ error: error.message });
-    return false;
-  }  
-},
+  },
 
-// DELETE: Remove a product
-deleteProduct: async (id) => {
-    try {
-      const res = await fetch(`${API}/products/${id}`, {
-        method: "DELETE",
-      });
-  
-      if (!res.ok) {
-        throw new Error("Failed to delete product");
-      }
+  updatePrice: async (id, price) => {
+    const products = getCollection("products");
+    const updated = products.map((product) =>
+      product.id === id ? { ...product, price } : product
+    );
+    saveCollection("products", updated);
+    set({ products: updated, error: "" });
+    return true;
+  },
 
-      set((state) => ({
-        products: state.products.filter(
-          (product) => product.id !== id
-        ),
-      }));
-
-      return true;
-    } catch (error) {
-      set({ error: error.message });
-      return false;
-    }
-},
+  deleteProduct: async (id) => {
+    const products = getCollection("products");
+    const updated = products.filter((product) => product.id !== id);
+    saveCollection("products", updated);
+    set({ products: updated, error: "" });
+    return true;
+  },
 }));
 
 export default useProductStore;
