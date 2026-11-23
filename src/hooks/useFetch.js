@@ -4,15 +4,15 @@ function useFetch(url) {
   const [data, setData] = useState([]); 
   const [loading, setLoading] = useState(true); 
 
-  useEffect(() => { // run when the page opens or the url changes
+  useEffect(() => { 
     fetch(url) 
-      .then((res) => res.json()) // turn the API reply into usable data
-      .then((result) => { // when the data arrives
-        setData(result); // save the data
-        setLoading(false); //say we are done waiting
+      .then((res) => res.json()) 
+      .then((result) => { 
+        setData(result); 
+        setLoading(false); 
       });
-  }, [url]); // run again only if the url changes
+  }, [url]); 
 
-  return { data, loading }; // hand both back to whoever used the hook
+  return { data, loading }; 
 }
 export default useFetch;
