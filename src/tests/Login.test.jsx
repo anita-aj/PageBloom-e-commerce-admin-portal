@@ -7,7 +7,7 @@ import { it, expect, vi } from "vitest"; // it = one test, expect = a check, vi 
 import Login from "../components/Login"; // the page being tested
 
 it("shows an error for a wrong password", async () => { 
-  global.fetch = vi.fn().mockResolvedValue({ json: () => Promise.resolve([]) }); // fake server that says "no user found"
+  globalThis.fetch = vi.fn().mockResolvedValue({ json: () => Promise.resolve([]) }); // fake server that says "no user found"
   render(<MemoryRouter><Login /></MemoryRouter>); // draw the page
   await userEvent.type(screen.getByPlaceholderText(/email/i), "a@b.com"); // type in the email box
   await userEvent.type(screen.getByPlaceholderText(/password/i), "wrong"); // type in the password box
