@@ -27,10 +27,11 @@ function AddProduct() {
     }));
   };
 
+  
   const handleImageChange = (e) => {
     const file = e.target.files[0];
 
-    if (file) {
+if (file) {
       setImage(file);
     }
   };
@@ -183,8 +184,10 @@ function AddProduct() {
     Add Product
   </button>
 </form>
-
+          
     </div>
-  );
+  ); 
 }
+
+
 export default AddProduct;
