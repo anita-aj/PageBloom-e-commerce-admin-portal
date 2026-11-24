@@ -17,6 +17,18 @@
       "email": "anitajepngetich50@gmail.com",
       "password": "1234",
       "id": 3
+    },
+    {
+      "name": "daniel ndiso",
+      "email": "danielndiso@gmail.com",
+      "password": "random1",
+      "id": 4
+    },
+    {
+      "name": "danny ngatho",
+      "email": "onlydanny254@gmail.com",
+      "password": "random254",
+      "id": 5
     }
   ],
   "products": [

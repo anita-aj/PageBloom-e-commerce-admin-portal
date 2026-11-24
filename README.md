@@ -48,10 +48,21 @@ Test login:`admin@pagebloom.com` / `admin123`, or create your own account with S
 
 Both terminals must stay running, because the app gets its data from the fake backend.
 
+## Deploying
+
+The frontend and fake API must both be deployed; the frontend alone only displays the login page.
+
+1. On Render, create a **Web Service** from this repository. Use `npm install` as the build command and `npm start` as the start command. Render supplies the port automatically.
+2. On Netlify, deploy the same repository as a Vite site with `npm run build` as the build command and `dist` as the publish directory.
+3. In Netlify's environment variables, set `VITE_API_URL` to the Render service's public base URL (for example, `https://your-api.onrender.com`, with no `/users` suffix), then trigger a new deploy. Vite embeds this value during the build.
+
+For local development, leave `VITE_API_URL` unset and run `npm run server` and `npm run dev`. If sign-in cannot reach the API, the login form displays a connection/configuration error.
+
 ## Scripts
 
 - `npm run dev`: starts the app
 - `npm run server`: starts the fake backend 
+- `npm start`: starts the fake backend on the port provided by a hosting service
 - `npm test -- --run`: runs the tests once
 
 
@@ -137,4 +148,4 @@ Run `npm test -- --run`. The tests use a fake `fetch`, so they do not need the b
 
 - Passwords are stored as plain text in `db.json`, so login is not secure. 
 - Orders, revenue and top-seller figures are mock data.
-- The fake backend runs only on your own computer, so the app cannot be hosted online as it is.
+- `json-server` is a demo backend, not a production database. Hosted file changes may be lost when the service restarts, and this setup does not provide production-grade authentication.

@@ -1,18 +1,18 @@
-import { useState, useEffect } from "react"; 
+import { useState, useEffect } from "react";
+import { getCollection } from "../data/localDb";
 
-function useFetch(url) { 
-  const [data, setData] = useState([]); 
-  const [loading, setLoading] = useState(true); 
+function useFetch(url) {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => { 
-    fetch(url) 
-      .then((res) => res.json()) 
-      .then((result) => { 
-        setData(result); 
-        setLoading(false); 
-      });
-  }, [url]); 
+  useEffect(() => {
+    const resource = url.split("/").pop();
+    const result = getCollection(resource);
+    setData(result);
+    setLoading(false);
+  }, [url]);
 
-  return { data, loading }; 
+  return { data, loading };
 }
+
 export default useFetch;

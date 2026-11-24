@@ -1,6 +1,19 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { API } from "../constants";
+
+const USERS_KEY = "pagebloom-users";
+
+const getStoredUsers = () => {
+  try {
+    return JSON.parse(localStorage.getItem(USERS_KEY)) || [];
+  } catch {
+    return [];
+  }
+};
+
+const saveStoredUsers = (users) => {
+  localStorage.setItem(USERS_KEY, JSON.stringify(users));
+};
 
 const useAuthStore = create(
   persist(
@@ -53,7 +66,8 @@ const useAuthStore = create(
         }
       },
 
-   }),
+      signOut: () => set({ user: null, error: "" }),
+    }),
     { name: "pagebloom-auth" }
   )
 );
